@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href=" {% static 'css/bootstrap.min.css' %} " type='text/css' />
+    <title>{% block title %}  {% endblock  %}</title>
+    <link rel="shortcut icon" type="image/png" href="{% static 'logo.png' %}"/>
+    <script src="https://kit.fontawesome.com/bb7791bf4b.js" crossorigin="anonymous"></script>
+    <style>
+        :root {
+            --margin-body-height: 8px;
+            --main-nav: 67px;
+        }
+        html, body{
+            min-height: calc(100% - var(--margin-body-height));
+            background-color: cornsilk;
+            user-select: none;
+        }
+
+        .sgpg-main-nav {
+            height: 100vh;
+            width: var(--main-nav);
+            contain: style layout size;
+            z-index: 10;
+            background-image: linear-gradient(#E0FFFF,#C0F6FB);
+            position: fixed;
+            margin: 0;
+            float: left;
+            box-sizing: border-box;
+            padding-top: 100px;
+        }
+        .sgpg-sub-nav {
+            width: 100%;
+            min-height: 100%;
+            justify-content: center;
+            float: left;
+            box-sizing: border-box;
+            padding-left: calc(var(--main-nav) + 5px);
+            padding-top: 10px;
+            padding-right: 5px;
+            background-color:ghostwhite;
+        }
+        .sgpg-sub-nav::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+        .container-fluid {
+            padding-left: 0;
+        }
+
+        .user-status-icon {
+            position: absolute;
+            left: 42px;
+            top: 40px;
+            z-index: 1;
+            cursor: pointer;
+        }
+        .icon-status {
+            width: 10px;
+            height: 10px;
+            background: rgb(98, 203, 0);
+            border-radius: 50%;
+            box-shadow: white 0px 0px 0px 1px;
+            display: inline-block;
+        }
+        .logo {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+        .image-logo {
+            position: relative;
+        }
+        .image-logo img {
+            width: 45px;
+            height: 45px;
+            font-size: 17px;
+            border-radius: 10px;
+        }
+        .main-tab-button {
+            color: #fff;
+            height: 60px;
+            justify-content: center;
+        }
+
+        .main-tab-button .selected {
+            color: #fff;
+            background: rgba(0,0,0,.2);
+        }
+        .nav__tap__top{
+            margin: 0;
+            padding: 0;
+        }
+        .navbar-nav {
+            width: 100%;
+        }
+
+        .nav-item {
+            height: 60px;
+            font-size: 24px;
+            text-align: center;
+            border-bottom: 1px solid cyan;
+            /* background-color:; */
+        }
+        .nav-item:hover {
+            background-color: bisque;
+        }
+
+        .nav-link {
+            color: rgb(109, 175, 250);
+            height: 100%;
+        }
+
+        .active {
+            color: white;
+            background-color: blanchedalmond;
+        }
+        .group-img {
+            float: left;
+            box-sizing: border-box;
+        }
+        .group-img img {
+            width: 60px;
+            height: 60px;
+            border-radius: 10px;
+        }
+        .group-name {
+            float: left;
+            padding: 0 5px;
+            box-sizing: border-box;
+        }
+        .group {
+            /* height: 100px; */
+            padding: 10px 5px;
+            margin-bottom: 2px;
+            background-color: aqua;
+            border-radius: 10px;
+        }
+        .group::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-3 fixed" style="padding-left: 0; position: fixed; left: 0;">
+                <div class="sgpg-main-nav">
+                    <div class="logo">
+                        <div class="image-logo">
+                            <img src="{% static 'logo.png' %}" alt="logo web n9"/>
+                        </div>
+                    </div>
+                    <div class="user-status-icon"> 
+                        <div class="icon-status"></div>
+                    </div>
+                    <nav class="navbar nav__tap__top">
+                        <ul class="navbar-nav">
+                            <li id="myprofile" class="nav-item" >
+                                <a class="nav-link active" href="#">
+                                    <i class="fas fa-home" title="Trang chủ"></i>
+                                </a>
+                            </li>
+                            <li id="home" class="nav-item" >
+                                <a class="nav-link" href="#"> 
+                                    <i class="fas fa-user" title="Trang cá nhân"></i>
+                                </a>
+                            </li>
+                            <li id="group" class="nav-item" >
+                                <a class="nav-link" href="#"> 
+                                    <i class="fas fa-users" title="Nhóm"></i>
+                                </a>
+                            </li>
+                            <li id="" class="nav-item" >
+                                <a class="nav-link" href="#"> 
+                                    <i class="fas fa-user-cog" title="Cài đặt người dùng"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <nav class="nav__tap__bottom">
+
+                    </nav>
+                </div>
+                <div class="sgpg-sub-nav">
+                    {% block sub-nav %}
+
+                    {% endblock  %}
+                </div>
+            </div>
+            <main class="col-lg-9" style="background-color:white; position: absolute; right: 0;">
+                <p>
+                    {% block content %}
+    
+                    {% endblock  %}
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex veritatis quod voluptates vitae quos obcaecati? Fuga ipsum sapiente eum natus eveniet! Nihil quis laborum dolorum quas itaque quibusdam laboriosam? Soluta.
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos, quam esse iusto at culpa a quas beatae voluptatem illum facere magnam quos id ipsum mollitia ratione eius? Qui, deleniti nisi!
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex veritatis quod voluptates vitae quos obcaecati? Fuga ipsum sapiente eum natus eveniet! Nihil quis laborum dolorum quas itaque quibusdam laboriosam? Soluta.
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos, quam esse iusto at culpa a quas beatae voluptatem illum facere magnam quos id ipsum mollitia ratione eius? Qui, deleniti nisi!
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex veritatis quod voluptates vitae quos obcaecati? Fuga ipsum sapiente eum natus eveniet! Nihil quis laborum dolorum quas itaque quibusdam laboriosam? Soluta.
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos, quam esse iusto at culpa a quas beatae voluptatem illum facere magnam quos id ipsum mollitia ratione eius? Qui, deleniti nisi!
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex veritatis quod voluptates vitae quos obcaecati? Fuga ipsum sapiente eum natus eveniet! Nihil quis laborum dolorum quas itaque quibusdam laboriosam? Soluta.
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos, quam esse iusto at culpa a quas beatae voluptatem illum facere magnam quos id ipsum mollitia ratione eius? Qui, deleniti nisi!
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex veritatis quod voluptates vitae quos obcaecati? Fuga ipsum sapiente eum natus eveniet! Nihil quis laborum dolorum quas itaque quibusdam laboriosam? Soluta.
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos, quam esse iusto at culpa a quas beatae voluptatem illum facere magnam quos id ipsum mollitia ratione eius? Qui, deleniti nisi!Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex veritatis quod voluptates vitae quos obcaecati? Fuga ipsum sapiente eum natus eveniet! Nihil quis laborum dolorum quas itaque quibusdam laboriosam? Soluta.
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos, quam esse iusto at culpa a quas beatae voluptatem illum facere magnam quos id ipsum mollitia ratione eius? Qui, deleniti nisi!Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex veritatis quod voluptates vitae quos obcaecati? Fuga ipsum sapiente eum natus eveniet! Nihil quis laborum dolorum quas itaque quibusdam laboriosam? Soluta.
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos, quam esse iusto at culpa a quas beatae voluptatem illum facere magnam quos id ipsum mollitia ratione eius? Qui, deleniti nisi!Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex veritatis quod voluptates vitae quos obcaecati? Fuga ipsum sapiente eum natus eveniet! Nihil quis laborum dolorum quas itaque quibusdam laboriosam? Soluta.
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos, quam esse iusto at culpa a quas beatae voluptatem illum facere magnam quos id ipsum mollitia ratione eius? Qui, deleniti nisi!Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex veritatis quod voluptates vitae quos obcaecati? Fuga ipsum sapiente eum natus eveniet! Nihil quis laborum dolorum quas itaque quibusdam laboriosam? Soluta.
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos, quam esse iusto at culpa a quas beatae voluptatem illum facere magnam quos id ipsum mollitia ratione eius? Qui, deleniti nisi!Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex veritatis quod voluptates vitae quos obcaecati? Fuga ipsum sapiente eum natus eveniet! Nihil quis laborum dolorum quas itaque quibusdam laboriosam? Soluta.
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos, quam esse iusto at culpa a quas beatae voluptatem illum facere magnam quos id ipsum mollitia ratione eius? Qui, deleniti nisi!Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex veritatis quod voluptates vitae quos obcaecati? Fuga ipsum sapiente eum natus eveniet! Nihil quis laborum dolorum quas itaque quibusdam laboriosam? Soluta.
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos, quam esse iusto at culpa a quas beatae voluptatem illum facere magnam quos id ipsum mollitia ratione eius? Qui, deleniti nisi!Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex veritatis quod voluptates vitae quos obcaecati? Fuga ipsum sapiente eum natus eveniet! Nihil quis laborum dolorum quas itaque quibusdam laboriosam? Soluta.
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos, quam esse iusto at culpa a quas beatae voluptatem illum facere magnam quos id ipsum mollitia ratione eius? Qui, deleniti nisi!Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex veritatis quod voluptates vitae quos obcaecati? Fuga ipsum sapiente eum natus eveniet! Nihil quis laborum dolorum quas itaque quibusdam laboriosam? Soluta.
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos, quam esse iusto at culpa a quas beatae voluptatem illum facere magnam quos id ipsum mollitia ratione eius? Qui, deleniti nisi!Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex veritatis quod voluptates vitae quos obcaecati? Fuga ipsum sapiente eum natus eveniet! Nihil quis laborum dolorum quas itaque quibusdam laboriosam? Soluta.
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos, quam esse iusto at culpa a quas beatae voluptatem illum facere magnam quos id ipsum mollitia ratione eius? Qui, deleniti nisi!Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex veritatis quod voluptates vitae quos obcaecati? Fuga ipsum sapiente eum natus eveniet! Nihil quis laborum dolorum quas itaque quibusdam laboriosam? Soluta.
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos, quam esse iusto at culpa a quas beatae voluptatem illum facere magnam quos id ipsum mollitia ratione eius? Qui, deleniti nisi!Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex veritatis quod voluptates vitae quos obcaecati? Fuga ipsum sapiente eum natus eveniet! Nihil quis laborum dolorum quas itaque quibusdam laboriosam? Soluta.
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos, quam esse iusto at culpa a quas beatae voluptatem illum facere magnam quos id ipsum mollitia ratione eius? Qui, deleniti nisi!Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex veritatis quod voluptates vitae quos obcaecati? Fuga ipsum sapiente eum natus eveniet! Nihil quis laborum dolorum quas itaque quibusdam laboriosam? Soluta.
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos, quam esse iusto at culpa a quas beatae voluptatem illum facere magnam quos id ipsum mollitia ratione eius? Qui, deleniti nisi!Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex veritatis quod voluptates vitae quos obcaecati? Fuga ipsum sapiente eum natus eveniet! Nihil quis laborum dolorum quas itaque quibusdam laboriosam? Soluta.
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos, quam esse iusto at culpa a quas beatae voluptatem illum facere magnam quos id ipsum mollitia ratione eius? Qui, deleniti nisi!Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex veritatis quod voluptates vitae quos obcaecati? Fuga ipsum sapiente eum natus eveniet! Nihil quis laborum dolorum quas itaque quibusdam laboriosam? Soluta.
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos, quam esse iusto at culpa a quas beatae voluptatem illum facere magnam quos id ipsum mollitia ratione eius? Qui, deleniti nisi!Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex veritatis quod voluptates vitae quos obcaecati? Fuga ipsum sapiente eum natus eveniet! Nihil quis laborum dolorum quas itaque quibusdam laboriosam? Soluta.
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos, quam esse iusto at culpa a quas beatae voluptatem illum facere magnam quos id ipsum mollitia ratione eius? Qui, deleniti nisi!Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex veritatis quod voluptates vitae quos obcaecati? Fuga ipsum sapiente eum natus eveniet! Nihil quis laborum dolorum quas itaque quibusdam laboriosam? Soluta.
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos, quam esse iusto at culpa a quas beatae voluptatem illum facere magnam quos id ipsum mollitia ratione eius? Qui, deleniti nisi!Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex veritatis quod voluptates vitae quos obcaecati? Fuga ipsum sapiente eum natus eveniet! Nihil quis laborum dolorum quas itaque quibusdam laboriosam? Soluta.
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos, quam esse iusto at culpa a quas beatae voluptatem illum facere magnam quos id ipsum mollitia ratione eius? Qui, deleniti nisi!Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex veritatis quod voluptates vitae quos obcaecati? Fuga ipsum sapiente eum natus eveniet! Nihil quis laborum dolorum quas itaque quibusdam laboriosam? Soluta.
+                    
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex veritatis quod voluptates vitae quos obcaecati? Fuga ipsum sapiente eum natus eveniet! Nihil quis laborum dolorum quas itaque quibusdam laboriosam? Soluta.
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos, quam esse iusto at culpa a quas beatae voluptatem illum facere magnam quos id ipsum mollitia ratione eius? Qui, deleniti nisi!
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex veritatis quod voluptates vitae quos obcaecati? Fuga ipsum sapiente eum natus eveniet! Nihil quis laborum dolorum quas itaque quibusdam laboriosam? Soluta.
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos, quam esse iusto at culpa a quas beatae voluptatem illum facere magnam quos id ipsum mollitia ratione eius? Qui, deleniti nisi!
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex veritatis quod voluptates vitae quos obcaecati? Fuga ipsum sapiente eum natus eveniet! Nihil quis laborum dolorum quas itaque quibusdam laboriosam? Soluta.
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos, quam esse iusto at culpa a quas beatae voluptatem illum facere magnam quos id ipsum mollitia ratione eius? Qui, deleniti nisi!
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex veritatis quod voluptates vitae quos obcaecati? Fuga ipsum sapiente eum natus eveniet! Nihil quis laborum dolorum quas itaque quibusdam laboriosam? Soluta.
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos, quam esse iusto at culpa a quas beatae voluptatem illum facere magnam quos id ipsum mollitia ratione eius? Qui, deleniti nisi!
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex veritatis quod voluptates vitae quos obcaecati? Fuga ipsum sapiente eum natus eveniet! Nihil quis laborum dolorum quas itaque quibusdam laboriosam? Soluta.
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos, quam esse iusto at culpa a quas beatae voluptatem illum facere magnam quos id ipsum mollitia ratione eius? Qui, deleniti nisi!Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex veritatis quod voluptates vitae quos obcaecati? Fuga ipsum sapiente eum natus eveniet! Nihil quis laborum dolorum quas itaque quibusdam laboriosam? Soluta.
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos, quam esse iusto at culpa a quas beatae voluptatem illum facere magnam quos id ipsum mollitia ratione eius? Qui, deleniti nisi!Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex veritatis quod voluptates vitae quos obcaecati? Fuga ipsum sapiente eum natus eveniet! Nihil quis laborum dolorum quas itaque quibusdam laboriosam? Soluta.
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos, quam esse iusto at culpa a quas beatae voluptatem illum facere magnam quos id ipsum mollitia ratione eius? Qui, deleniti nisi!Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex veritatis quod voluptates vitae quos obcaecati? Fuga ipsum sapiente eum natus eveniet! Nihil quis laborum dolorum quas itaque quibusdam laboriosam? Soluta.
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos, quam esse iusto at culpa a quas beatae voluptatem illum facere magnam quos id ipsum mollitia ratione eius? Qui, deleniti nisi!Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex veritatis quod voluptates vitae quos obcaecati? Fuga ipsum sapiente eum natus eveniet! Nihil quis laborum dolorum quas itaque quibusdam laboriosam? Soluta.
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos, quam esse iusto at culpa a quas beatae voluptatem illum facere magnam quos id ipsum mollitia ratione eius? Qui, deleniti nisi!Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex veritatis quod voluptates vitae quos obcaecati? Fuga ipsum sapiente eum natus eveniet! Nihil quis laborum dolorum quas itaque quibusdam laboriosam? Soluta.
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos, quam esse iusto at culpa a quas beatae voluptatem illum facere magnam quos id ipsum mollitia ratione eius? Qui, deleniti nisi!Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex veritatis quod voluptates vitae quos obcaecati? Fuga ipsum sapiente eum natus eveniet! Nihil quis laborum dolorum quas itaque quibusdam laboriosam? Soluta.
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos, quam esse iusto at culpa a quas beatae voluptatem illum facere magnam quos id ipsum mollitia ratione eius? Qui, deleniti nisi!Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex veritatis quod voluptates vitae quos obcaecati? Fuga ipsum sapiente eum natus eveniet! Nihil quis laborum dolorum quas itaque quibusdam laboriosam? Soluta.
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos, quam esse iusto at culpa a quas beatae voluptatem illum facere magnam quos id ipsum mollitia ratione eius? Qui, deleniti nisi!Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex veritatis quod voluptates vitae quos obcaecati? Fuga ipsum sapiente eum natus eveniet! Nihil quis laborum dolorum quas itaque quibusdam laboriosam? Soluta.
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos, quam esse iusto at culpa a quas beatae voluptatem illum facere magnam quos id ipsum mollitia ratione eius? Qui, deleniti nisi!Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex veritatis quod voluptates vitae quos obcaecati? Fuga ipsum sapiente eum natus eveniet! Nihil quis laborum dolorum quas itaque quibusdam laboriosam? Soluta.
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos, quam esse iusto at culpa a quas beatae voluptatem illum facere magnam quos id ipsum mollitia ratione eius? Qui, deleniti nisi!Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex veritatis quod voluptates vitae quos obcaecati? Fuga ipsum sapiente eum natus eveniet! Nihil quis laborum dolorum quas itaque quibusdam laboriosam? Soluta.
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos, quam esse iusto at culpa a quas beatae voluptatem illum facere magnam quos id ipsum mollitia ratione eius? Qui, deleniti nisi!Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex veritatis quod voluptates vitae quos obcaecati? Fuga ipsum sapiente eum natus eveniet! Nihil quis laborum dolorum quas itaque quibusdam laboriosam? Soluta.
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos, quam esse iusto at culpa a quas beatae voluptatem illum facere magnam quos id ipsum mollitia ratione eius? Qui, deleniti nisi!Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex veritatis quod voluptates vitae quos obcaecati? Fuga ipsum sapiente eum natus eveniet! Nihil quis laborum dolorum quas itaque quibusdam laboriosam? Soluta.
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos, quam esse iusto at culpa a quas beatae voluptatem illum facere magnam quos id ipsum mollitia ratione eius? Qui, deleniti nisi!Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex veritatis quod voluptates vitae quos obcaecati? Fuga ipsum sapiente eum natus eveniet! Nihil quis laborum dolorum quas itaque quibusdam laboriosam? Soluta.
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos, quam esse iusto at culpa a quas beatae voluptatem illum facere magnam quos id ipsum mollitia ratione eius? Qui, deleniti nisi!Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex veritatis quod voluptates vitae quos obcaecati? Fuga ipsum sapiente eum natus eveniet! Nihil quis laborum dolorum quas itaque quibusdam laboriosam? Soluta.
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos, quam esse iusto at culpa a quas beatae voluptatem illum facere magnam quos id ipsum mollitia ratione eius? Qui, deleniti nisi!Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex veritatis quod voluptates vitae quos obcaecati? Fuga ipsum sapiente eum natus eveniet! Nihil quis laborum dolorum quas itaque quibusdam laboriosam? Soluta.
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos, quam esse iusto at culpa a quas beatae voluptatem illum facere magnam quos id ipsum mollitia ratione eius? Qui, deleniti nisi!Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex veritatis quod voluptates vitae quos obcaecati? Fuga ipsum sapiente eum natus eveniet! Nihil quis laborum dolorum quas itaque quibusdam laboriosam? Soluta.
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos, quam esse iusto at culpa a quas beatae voluptatem illum facere magnam quos id ipsum mollitia ratione eius? Qui, deleniti nisi!Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex veritatis quod voluptates vitae quos obcaecati? Fuga ipsum sapiente eum natus eveniet! Nihil quis laborum dolorum quas itaque quibusdam laboriosam? Soluta.
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos, quam esse iusto at culpa a quas beatae voluptatem illum facere magnam quos id ipsum mollitia ratione eius? Qui, deleniti nisi!Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex veritatis quod voluptates vitae quos obcaecati? Fuga ipsum sapiente eum natus eveniet! Nihil quis laborum dolorum quas itaque quibusdam laboriosam? Soluta.
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos, quam esse iusto at culpa a quas beatae voluptatem illum facere magnam quos id ipsum mollitia ratione eius? Qui, deleniti nisi!
+
+                </p>
+            </main>
+        </div>
+    </div>
+    
+</body>
+</html>
